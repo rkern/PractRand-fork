@@ -460,6 +460,7 @@ bool interpret_seed(const std::string &seedstr, Uint64 &seed) {
 #include "PractRand/Tests/FPMulti.h"
 #include "PractRand/Tests/DistFreq4.h"
 #include "PractRand/Tests/Gap16.h"
+#include "PractRand/Tests/Pat5.h"
 PractRand::Tests::ListOfTests testset_BirthdaySystematic() {
 	//return PractRand::Tests::ListOfTests(new PractRand::Tests::FPMulti(3,0));
 	//return PractRand::Tests::ListOfTests(new PractRand::Tests::BirthdayAlt(10), new PractRand::Tests::Birthday32());
@@ -470,6 +471,9 @@ PractRand::Tests::ListOfTests testset_BirthdaySystematic() {
 	//return PractRand::Tests::ListOfTests(new PractRand::Tests::BirthdayLamda1(20));
 	return PractRand::Tests::ListOfTests(new PractRand::Tests::Rep16());
 }
+PractRand::Tests::ListOfTests testset_Pat5() {
+    return PractRand::Tests::ListOfTests(new PractRand::Tests::Pat5());
+}
 struct UnfoldedTestSet {
 	int number;
 	PractRand::Tests::ListOfTests(*callback)();
@@ -479,6 +483,7 @@ UnfoldedTestSet test_sets[] = {
 	{ 0, PractRand::Tests::Batteries::get_core_tests, "core" },//default value must come first
 	{ 1, PractRand::Tests::Batteries::get_expanded_core_tests, "expanded" },
 	{ 10, testset_BirthdaySystematic, "special (Birthday)" },
+        { 100, testset_Pat5, "pat5" },
 	{ -1, NULL, NULL }
 };
 int lookup_te_value(int te) {
