@@ -3661,8 +3661,8 @@ PractRand::Tests::FPF::FPF(int stride_bits_L2_ , int sig_bits_ , int exp_bits_ )
 	if (sig_bits > MAX_SIG_BITS) issue_error();
 	if (exp_bits > 6) issue_error();
 	for (int i = 0; i <= 32; i++) {
-		Uint32 x = i, y = 1 << i;
-		if (x >= 32) { x = 32; y = 0; }
+		Uint32 x = std::min(i, 32);
+		Uint32 y = i < 32 ? 1<<i : 0;
 		if (count_low_zeroes32(y) != x) issue_error("count_low_zeroes32 behaving incorrectly");
 	}
 }
