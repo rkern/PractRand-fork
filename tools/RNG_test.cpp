@@ -5,6 +5,7 @@
 #include <ctime>
 #include <cstring>
 #include <string>
+#include <limits>
 #include <map>
 #include <vector>
 #include <set>
@@ -361,6 +362,8 @@ double show_checkpoint(TestManager *tman, int mode, Uint64 seed, double time, bo
 	std::printf("\n");
 	std::fflush(stdout);
 	if (end_on_failure && biggest_decimal_suspicion > 8.5) std::exit(0);
+
+	return std::numeric_limits<double>::quiet_NaN();
 }
 double interpret_length(const std::string &lengthstr, bool normal_mode) {
 	//(0-9)*[.(0-9)*][((K|M|G|T|P)[B])|(s|m|h|d)]
